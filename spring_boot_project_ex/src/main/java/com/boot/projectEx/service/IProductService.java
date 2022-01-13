@@ -1,10 +1,10 @@
-package com.boot.projectEx.dao;
+package com.boot.projectEx.service;
 
+import com.boot.projectEx.model.ProductVO;
 import java.util.ArrayList;
 import java.util.HashMap;
-import com.boot.projectEx.model.ProductVO;
 
-public interface IProductDAO {
+public interface IProductService {
     ArrayList<ProductVO> listCtgProduct(String ctgId); // 카테고리별 상품 조회
 
     ArrayList<ProductVO> listAllProduct(); // 전체 상품 조회

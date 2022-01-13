@@ -54,10 +54,10 @@
                 <div id="subMenuBox">
                     <div class="subMenuItem" id="subMenuItem1">
                         <ul>
-                            <li><a href="#">subMenuItem 1-1</a></li>
-                            <li><a href="#">subMenuItem 1-2</a></li>
-                            <li><a href="#">subMenuItem 1-3</a></li>
-                            <li><a href="#">subMenuItem 1-4</a></li>
+                            <li><a href="<c:url value='/product/listCtgProduct/${1}'/> ">노트북</a></li>
+                            <li><a href="<c:url value='/product/listCtgProduct/${2}'/> ">프린터</a></li>
+                            <li><a href="<c:url value='/product/listCtgProduct/${3}'/> ">마우스</a></li>
+                            <li><a href="<c:url value='/product/listCtgProduct/${4}'/> ">키보드</a></li>
                         </ul>
                     </div>
                     <div class="subMenuItem" id="subMenuItem2">

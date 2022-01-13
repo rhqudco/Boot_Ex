@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+
+<mapper namespace="com.boot.projectEx.dao.IProductDAO">
+    <resultMap id="memResult" type="com.boot.projectEx.model.ProductVO" >
+        <result property="prdNo" column="prdNo" />
+        <result property="prdName" column="prdName" />
+        <result property="prdPrice" column="prdPrice" />
+        <result property="prdCompany" column="prdCompany" />
+        <result property="prdStock" column="prdStock" />
+        <result property="prdDescript" column="prdDescript" />
+        <result property="prdImg" column="prdImg" />
+        <result property="ctgId" column="ctgId" />
+    </resultMap>
+</mapper>
