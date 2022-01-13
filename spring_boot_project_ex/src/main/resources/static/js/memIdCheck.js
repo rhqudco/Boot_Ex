@@ -1,19 +1,16 @@
-/**
- * prdNoCheck.js
- */
 $(document).ready(function () {
-    $('#prdNoCheckBtn').on('click', function () {
+    $('#idCheck').on('click', function () {
         event.preventDefault();
         $.ajax({
             type:"post",
-            url:"prdNoCheck",
-            data:{"prdNo" : $('#prdNo').val() },
+            url:"memIdCheck",
+            data:{"memId" : $('#memId').val() },
             dataType:'text',
             success:function(result){
                 if(result == "no_use"){
-                    alert("사용할 수 없는 번호입니다.");
+                    alert("사용할 수 있는 ID 입니다.");
                 }else{
-                    alert("사용 가능한 번호입니다.");
+                    alert("사용 불가능한 ID 입니다.");
                 }
             },
             error:function(data, textStatus){
