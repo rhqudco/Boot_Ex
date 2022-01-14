@@ -62,7 +62,7 @@ public class MemberController {
         }
         return result;
     }
-    // 상품 등록
+    // 회원가입
     @RequestMapping("/join")
     public String join(MemberVO mem) {
         System.out.println(mem.getMemId());

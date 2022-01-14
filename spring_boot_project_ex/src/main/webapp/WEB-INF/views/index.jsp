@@ -1,3 +1,4 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
@@ -70,14 +71,14 @@
                 <div id="productBox">
                     <h3>베스트 상품</h3>
                     <div class="product">
-                        <div><a href=""><img src="/images/prd01.jpg"></a></div>
-                        <div><a href=""><img src="/images/prd02.jpg"></a></div>
-                        <div><a href=""><img src="/images/prd03.jpg"></a></div>
+                        <div><a href="<c:url value='/product/detailViewProduct/${1001}'/>"><img src="<c:url value='/prdImages/1001.jpg'/>"></a></div>
+                        <div><a href="<c:url value='/product/detailViewProduct/${1002}'/>"><img src="<c:url value='/prdImages/1002.jpg'/>"></a></div>
+                        <div><a href="<c:url value='/product/detailViewProduct/${1003}'/>"><img src="<c:url value='/prdImages/1003.jpg'/>"></a></div>
                     </div>
                     <div class="product">
-                        <div><a href=""><img src="/images/prd04.jpg"></a></div>
-                        <div><a href=""><img src="/images/prd05.jpg"></a></div>
-                        <div><a href=""><img src="/images/prd06.jpg"></a></div>
+                        <div><a href="<c:url value='/product/detailViewProduct/${1004}'/>"><img src="<c:url value='/prdImages/1004.jpg'/>"></a></div>
+                        <div><a href="<c:url value='/product/detailViewProduct/${1005}'/>"><img src="<c:url value='/prdImages/1005.jpg'/>"></a></div>
+                        <div><a href="<c:url value='/product/detailViewProduct/${1006}'/>"><img src="<c:url value='/prdImages/1006.jpg'/>"></a></div>
                     </div>
                 </div>
             </article>

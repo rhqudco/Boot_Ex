@@ -1,6 +1,6 @@
 package com.boot.projectEx.service;
 
-import com.boot.projectEx.dao.IMemberDAO;
+import com.boot.projectEx.dao.IProductDAO;
 import com.boot.projectEx.model.ProductVO;
 import lombok.Setter;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,10 +13,10 @@ import java.util.HashMap;
 public class ProductService implements IProductService{
     @Setter(onMethod_ = {@Autowired})
     @Qualifier("IProductDAO")
-    IMemberDAO dao;
+    IProductDAO dao;
     @Override
     public ArrayList<ProductVO> listCtgProduct(String ctgId) {
-        return null;
+        return dao.listCtgProduct(ctgId);
     }
     @Override
     public ArrayList<ProductVO> listAllProduct() {
@@ -36,7 +36,7 @@ public class ProductService implements IProductService{
     }
     @Override
     public ProductVO detailViewProduct(String prdNo) {
-        return null;
+        return dao.detailViewProduct(prdNo);
     }
     @Override
     public String prdNoCheck(String prdNo) {

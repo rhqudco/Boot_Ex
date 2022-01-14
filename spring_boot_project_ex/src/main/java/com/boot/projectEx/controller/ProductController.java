@@ -1,7 +1,32 @@
 package com.boot.projectEx.controller;
 
+import com.boot.projectEx.model.ProductVO;
+import com.boot.projectEx.service.ProductService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestMapping;
+
+import java.util.ArrayList;
 
 @Controller
 public class ProductController {
+    @Autowired
+    ProductService service;
+    // 카테고리별 상품 조회
+    @RequestMapping("/product/listCtgProduct/{ctgId}")
+    public String listCtgProduct(@PathVariable String ctgId, Model model){
+        ArrayList<ProductVO> prdList = service.listCtgProduct(ctgId);
+        model.addAttribute("prdList", prdList);
+        return "product/productListCtgView";
+    }
+    // 상품 상세 정보 페이지로 이동
+    @RequestMapping("/product/detailViewProduct/{prdNo}")
+    public String productDetailView(@PathVariable String prdNo, Model model) {
+        // 상품 번호 전달하고, 해당 상품 정보 받아오기
+        ProductVO prd = service.detailViewProduct(prdNo);
+        model.addAttribute("prd", prd);
+        return "product/productDetailView"; // 상품 상세 정보 뷰 페이지
+    }
 }

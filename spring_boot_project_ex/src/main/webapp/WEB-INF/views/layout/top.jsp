@@ -33,7 +33,10 @@
                         <c:if test="${not empty sessionScope.sid}">
                             ${sessionScope.sid} 님 환영합니다! &nbsp;
                             <a href="<c:url value='/logout'/> ">로그아웃</a>
-                            이벤트 장바구니 고객센터 MyPage
+                            이벤트
+                            <a href="<c:url value='/product/cartList'/>">장바구니</a>
+                            고객센터
+                            MyPage
                             <a href="<c:url value='/joinForm'/> ">회원가입</a>
                         </c:if>
                     </div>

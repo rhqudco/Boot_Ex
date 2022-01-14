@@ -1,7 +1,9 @@
 package com.boot.projectEx;
 
+import com.boot.projectEx.controller.CartController;
 import com.boot.projectEx.controller.MemberController;
 import com.boot.projectEx.controller.ProductController;
+import com.boot.projectEx.dao.ICartDAO;
 import com.boot.projectEx.dao.IMemberDAO;
 import com.boot.projectEx.dao.IProductDAO;
 import org.mybatis.spring.annotation.MapperScan;
@@ -19,6 +21,9 @@ import org.springframework.context.annotation.ComponentScan;
 
 @ComponentScan(basePackageClasses = ProductController.class)
 @MapperScan(basePackageClasses = IProductDAO.class)
+
+@ComponentScan(basePackageClasses = CartController.class)
+@MapperScan(basePackageClasses = ICartDAO.class)
 
 public class SpringBootProjectExApplication {
 	public static void main(String[] args) {

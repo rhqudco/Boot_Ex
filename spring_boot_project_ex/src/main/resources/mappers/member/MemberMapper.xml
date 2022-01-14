@@ -19,7 +19,8 @@
     </select>
 <!--  회원가입  -->
     <insert id="join" parameterType="com.boot.projectEx.model.MemberVO" >
-        INSERT INTO member (memId, memPwd, memName)
-        VALUES (#{memId}, #{memPwd}, #{memName})
+        INSERT INTO member (memId, memPwd, memName, memHP, memZipcode, memAddress1, memAddress2)
+        VALUES (#{memId}, #{memPwd}, #{memName}, #{memHP1}+#{memHP2}+#{memHP3}, #{zipcode}, #{address1}, #{address2})
     </insert>
+
 </mapper>
