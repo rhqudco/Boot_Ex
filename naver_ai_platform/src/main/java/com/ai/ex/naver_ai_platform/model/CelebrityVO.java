@@ -1,4 +1,4 @@
-package com.ai.ex.naver_ai_platform.dao;
+package com.ai.ex.naver_ai_platform.model;
 
 public class CelebrityVO {
     private String value;

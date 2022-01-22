@@ -1,10 +1,15 @@
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<!DOCTYPE html>
 <html>
-    <head>
-        <title>index</title>
-    </head>
-    <body>
-        <h1>Naver A.I Platform</h1>
-        <a href="faceRecogCel">유명인 얼굴 인식</a>
-    </body>
+	<head>
+		<meta charset="UTF-8">
+		<title>index 페이지</title>
+	</head>
+	<body>
+		<h3>Naver AI Platform</h3>
+		
+		<a href="faceRecogCelForm">유명인 얼굴 인식</a><br><br>
+		<a href="faceRecogForm">얼굴 감지</a><br><br>
+	</body>
 </html>

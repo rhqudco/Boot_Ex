@@ -1,10 +1,9 @@
 package com.ai.ex.naver_ai_platform.service;
 
-import com.ai.ex.naver_ai_platform.dao.CelebrityVO;
+import com.ai.ex.naver_ai_platform.model.CelebrityVO;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
-import org.json.simple.parser.ParseException;
 import org.springframework.stereotype.Service;
 import java.io.*;
 import java.net.HttpURLConnection;
@@ -14,14 +13,17 @@ import java.util.ArrayList;
 
 @Service
 public class CFRCelebrityService {
-    public void clovaFaceRecogCel() {
-        StringBuffer reqStr = new StringBuffer();
-        String clientId = "awb85vfn33";//애플리케이션 클라이언트 아이디값";
-        String clientSecret = "01CLEtMaAM1jmjya6WtEV5zEmNUj87TnWmaZdnic";//애플리케이션 클라이언트 시크릿값";
+    public ArrayList<CelebrityVO> clovaFaceRecogCel(String filePathName) {
+        //StringBuffer reqStr = new StringBuffer();
+        String clientId = "";//애플리케이션 클라이언트 아이디값";
+        String clientSecret = "";//애플리케이션 클라이언트 시크릿값";
+
+        ArrayList<CelebrityVO> celList = new ArrayList<CelebrityVO>();
 
         try {
             String paramName = "image"; // 파라미터명은 image로 지정
-            String imgFile = "/Users/gobyeongchae/Desktop/IMG_5387.JPG";
+            // String imgFile = "C:/ai/song.jpg";  // 전송할 이미지 파일
+            String imgFile = filePathName;
             File uploadFile = new File(imgFile);
             String apiURL = "https://naveropenapi.apigw.ntruss.com/vision/v1/celebrity"; // 유명인 얼굴 인식
             URL url = new URL(apiURL);
@@ -70,43 +72,56 @@ public class CFRCelebrityService {
                     response.append(inputLine);
                 }
                 br.close();
-                System.out.println(response.toString());
+                System.out.println(response.toString()); // 서버로부터 받은 결과를 콘솔에 출력 (JSON 형태)
+                // jsonToVoList() 메소드 호출하면서 결과 json 문자열 전달
+                celList = jsonToVoList(response.toString());
             } else {
                 System.out.println("error !!!");
             }
         } catch (Exception e) {
             System.out.println(e);
         }
+
+        // CelebrityVO 리스트 반환
+        return celList;
     }
-    public ArrayList<CelebrityVO> jsonToVo(String jsonResultStr) {
+
+    // API 서버로부터 받은 JSON 형태의 결과 데이터를 전달받아서 value와 confidence 추출하고
+    // VO 리스트 만들어 반환하는 함수
+    public ArrayList<CelebrityVO> jsonToVoList(String jsonResultStr){
         ArrayList<CelebrityVO> celList = new ArrayList<CelebrityVO>();
+
         try {
-            // JSON 형태의 문자열에서 JSON 오브젝트 "faces" 추출해서 JSONArray에 저장
+            //JSON 형태의 문자열에서 JSON 오브젝트 "faces" 추출해서 JSONArray에 저장
             JSONParser jsonParser = new JSONParser();
-            JSONObject jsonObject = (JSONObject)jsonParser.parse(jsonResultStr);
-            JSONArray celebrityArray = (JSONArray)jsonObject.get("faces");
-            // JSONArray 각 요소에서 value와 confidence 추출하여 VO에 담아서 리스트에 추가
+            JSONObject jsonObj = (JSONObject) jsonParser.parse(jsonResultStr);
+            JSONArray celebrityArray = (JSONArray) jsonObj.get("faces");
+
+            // JSONArray의 각 요소에서 value와 confidence 추출하여
+            // CelebrityVO 담아 리스트에 추가
             if(celebrityArray != null) {
                 // value와 confidence 추출
-                // JSONArray 각 요소에서 value와 confidence 추출
-                for(int i = 0; i < celebrityArray.size(); i++) {
-                    JSONObject tempObj = (JSONObject)celebrityArray.get(i);
-                    tempObj = (JSONObject)tempObj.get("celebrity");
-                    String value = (String)tempObj.get("value");
-                    double confidence = (double)tempObj.get("confidence");
-                    // VO에 저장하여 리스트에 추가
+                // JSONArray  각 요소에서 value와 confidence 추출
+                for(int i=0; i < celebrityArray.size(); i++){
+                    JSONObject tempObj = (JSONObject) celebrityArray.get(i);
+                    tempObj = (JSONObject) tempObj.get("celebrity");
+                    String value = (String) tempObj.get("value");
+                    double confidence = (double) tempObj.get("confidence");
+
+                    // VO에 저장해서 리스트에 추가
                     CelebrityVO vo = new CelebrityVO();
                     vo.setValue(value);
                     vo.setConfidence(confidence);
+
                     celList.add(vo);
                 }
-            }
-            else { // 유명인을 찾지 못한 경우 (faces가 빈 배열인 경우)
+            } else {
+                //유명인을 찾지 못한 경우 ("faces" : [])
                 CelebrityVO vo = new CelebrityVO();
                 vo.setValue("없음");
                 vo.setConfidence(0);
-                celList.add(vo);
             }
+
         } catch (Exception e) {
             e.printStackTrace();
         }
