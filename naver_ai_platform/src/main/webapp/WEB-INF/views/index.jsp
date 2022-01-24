@@ -11,5 +11,7 @@
 		
 		<a href="faceRecogCelForm">유명인 얼굴 인식</a><br><br>
 		<a href="faceRecogForm">얼굴 감지</a><br><br>
+		<a href="clovaOCRForm">문자 인식</a><br><br>
+		<a href="poseForm">포즈 인식</a><br><br>
 	</body>
 </html>

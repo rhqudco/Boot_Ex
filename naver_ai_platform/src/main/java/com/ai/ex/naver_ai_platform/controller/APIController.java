@@ -7,6 +7,8 @@ import com.ai.ex.naver_ai_platform.model.CelebrityVO;
 import com.ai.ex.naver_ai_platform.model.FaceVO;
 import com.ai.ex.naver_ai_platform.service.CFRCelebrityService;
 import com.ai.ex.naver_ai_platform.service.CFRFaceRecogService;
+import com.ai.ex.naver_ai_platform.service.OCRService;
+import com.ai.ex.naver_ai_platform.service.PoseEstimationService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -21,6 +23,12 @@ public class APIController {
 	
 	@Autowired
 	private CFRFaceRecogService cfrRecogService;
+
+	@Autowired
+	private OCRService ocrService;
+
+	@Autowired
+	private PoseEstimationService poseEstimationService;
 	
 	// index 페이지로 이동
 	@RequestMapping("/")
@@ -83,8 +91,23 @@ public class APIController {
 		model.addAttribute("fileName", originalFileName);
 		return "faceRecogView";
 	}
+
+//	// ocr 페이지 호출
+//	@RequestMapping("/clovaOCR")
+//	public void clovaOCR() {
+//		ocrService.clovaOCRService();
+//	} -> APIRestController에서 처리
+	// ocrView.jsp 페이지로 이동
+	@RequestMapping("/clovaOCRForm")
+	public String clovaOCRForm() {
+		return "ocrView";
+	}
+//	@RequestMapping("/pose")
+//	public void pose() {
+//		poseEstimationService.poseEstimation();
+//	}
+	@RequestMapping("/poseForm")
+	public String poseForm() {
+		return "poseView";
+	}
 }
-
-
-
-
