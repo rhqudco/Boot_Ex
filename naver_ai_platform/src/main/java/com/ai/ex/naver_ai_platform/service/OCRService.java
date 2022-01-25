@@ -13,7 +13,7 @@ import java.util.UUID;
 public class OCRService {
     public String clovaOCRService(String filePathName) {
         String apiURL = "";
-        String secretKey = "";
+        String secretKey = "=";
         String imageFile = filePathName;
         String result = "";
         try {

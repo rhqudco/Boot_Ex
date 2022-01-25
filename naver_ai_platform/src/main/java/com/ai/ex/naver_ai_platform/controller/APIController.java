@@ -5,10 +5,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import com.ai.ex.naver_ai_platform.model.CelebrityVO;
 import com.ai.ex.naver_ai_platform.model.FaceVO;
-import com.ai.ex.naver_ai_platform.service.CFRCelebrityService;
-import com.ai.ex.naver_ai_platform.service.CFRFaceRecogService;
-import com.ai.ex.naver_ai_platform.service.OCRService;
-import com.ai.ex.naver_ai_platform.service.PoseEstimationService;
+import com.ai.ex.naver_ai_platform.service.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -29,6 +26,15 @@ public class APIController {
 
 	@Autowired
 	private PoseEstimationService poseEstimationService;
+
+	@Autowired
+	private ObjectDetectionService objectDetectionService;
+
+	@Autowired
+	private STTService sttService;
+
+	@Autowired
+	private TTSService ttsService;
 	
 	// index 페이지로 이동
 	@RequestMapping("/")
@@ -97,17 +103,40 @@ public class APIController {
 //	public void clovaOCR() {
 //		ocrService.clovaOCRService();
 //	} -> APIRestController에서 처리
+
 	// ocrView.jsp 페이지로 이동
 	@RequestMapping("/clovaOCRForm")
 	public String clovaOCRForm() {
 		return "ocrView";
 	}
+
 //	@RequestMapping("/pose")
 //	public void pose() {
 //		poseEstimationService.poseEstimation();
 //	}
+
 	@RequestMapping("/poseForm")
 	public String poseForm() {
 		return "poseView";
+	}
+
+	@RequestMapping("/objDetectForm")
+	public String objDetectForm() {
+		return "objDetect";
+	}
+
+	@RequestMapping("/sttView")
+	public String sttService() {
+		return "sttView";
+	}
+	@RequestMapping("/sttView2")
+	public String sttService2() {
+		return "sttView2";
+	}
+
+	// tts
+	@RequestMapping("clovaTTSForm")
+	public String ttsService() {
+		return "ttsView";
 	}
 }
