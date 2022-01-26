@@ -35,6 +35,9 @@ public class APIController {
 
 	@Autowired
 	private TTSService ttsService;
+
+	@Autowired
+	private ChatbotService chatbotService;
 	
 	// index 페이지로 이동
 	@RequestMapping("/")
@@ -138,5 +141,23 @@ public class APIController {
 	@RequestMapping("clovaTTSForm")
 	public String ttsService() {
 		return "ttsView";
+	}
+
+	// 챗봇 질문 전송하고 결과 받아서 출력
+	@RequestMapping("/chatbot")
+	public void chatbot() {
+		chatbotService.main("넌 누구니"); // 메소드가 static이라 클래스로 호출해야 함
+	}
+	@RequestMapping("/chatbotForm")
+	public String chatbotForm() {
+		return "chatbotForm";
+	}
+	@RequestMapping("/chatbotForm2")
+	public String chatbotForm2() {
+		return "chatbotForm2";
+	}
+	@RequestMapping("/chatbotForm3")
+	public String chatbotForm3() {
+		return "chatbotForm3";
 	}
 }

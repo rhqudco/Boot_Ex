@@ -28,6 +28,7 @@ public class APIRestController {
     private STTService2 sttService2;
     @Autowired
     private TTSService ttsService;
+    @Autowired ChatbotService chatbotService;
     @RequestMapping("/clovaOCR")
     public String clovaOCR(@RequestParam("uploadFile") MultipartFile file){
         String result = "";
@@ -157,6 +158,31 @@ public class APIRestController {
         } catch (Exception e) {
             e.printStackTrace();
         }
+        return tts;
+    }
+    @RequestMapping("/chatbotSend")
+    public String chatbotSend(@RequestParam("message") String inputText) {
+        String msg = "";
+        msg = chatbotService.main(inputText);
+        return msg;
+    }
+    @RequestMapping("/chatbotSend2")
+    public String chatbotSend2(@RequestParam("message") String inputText) {
+        String msg = "";
+        msg = chatbotService.main(inputText);
+        return msg;
+    }
+
+    @RequestMapping("/chatbotSend3")
+    public String chatbotSend3(@RequestParam("message") String inputText) {
+        String msg = "";
+        msg = chatbotService.main(inputText);
+        return msg;
+    }
+    @RequestMapping("/chatbotTTS")
+    public String chatbotTTS(@RequestParam("message") String message) {
+        String tts = "";
+        tts = ttsService.clovaTextToSpeech2(message);
         return tts;
     }
 }
