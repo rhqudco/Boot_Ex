@@ -185,4 +185,16 @@ public class APIRestController {
         tts = ttsService.clovaTextToSpeech2(message);
         return tts;
     }
+    @RequestMapping("/chatbotCallImgLink")
+    public String chatbotCallImgLink(@RequestParam("message") String inputText) {
+        String msg = "";
+        msg = chatbotService.imgLinkMainService(inputText);
+        return msg; // JSON 형태의 값을 그대로 js에 전송
+    }
+    @RequestMapping("/chatbotArtineer")
+    public String chatbotArtineer(@RequestParam("message") String inputText) {
+        String msg = "";
+        msg = chatbotService.chatbotArtineer(inputText);
+        return msg; // JSON 형태의 값을 그대로 js에 전송
+    }
 }

@@ -72,6 +72,116 @@ public class ChatbotService {
         return chatbotMessage;
     }
 
+    public String imgLinkMainService(String voiceMessage) {
+        String secretKey = "";
+        String apiURL = "";
+
+        String chatbotMessage = ""; // 응답 메세지
+        try {
+            //String apiURL = "https://ex9av8bv0e.apigw.ntruss.com/custom_chatbot/prod/";
+
+            URL url = new URL(apiURL);
+
+            String message = getReqMessage(voiceMessage);
+            System.out.println("##" + message);
+
+            String encodeBase64String = makeSignature(message, secretKey);
+
+            HttpURLConnection con = (HttpURLConnection)url.openConnection();
+            con.setRequestMethod("POST");
+            con.setRequestProperty("Content-Type", "application/json;UTF-8");
+            con.setRequestProperty("X-NCP-CHATBOT_SIGNATURE", encodeBase64String);
+
+            // post request
+            con.setDoOutput(true);
+            DataOutputStream wr = new DataOutputStream(con.getOutputStream());
+            wr.write(message.getBytes("UTF-8"));
+            wr.flush();
+            wr.close();
+            int responseCode = con.getResponseCode();
+
+            BufferedReader br;
+
+            if(responseCode==200) { // Normal call
+                System.out.println(con.getResponseMessage());
+
+                BufferedReader in = new BufferedReader(
+                        new InputStreamReader(
+                                con.getInputStream()));
+                String decodedString;
+                while ((decodedString = in.readLine()) != null) {
+                    chatbotMessage = decodedString;
+                }
+                //chatbotMessage = decodedString;
+                in.close();
+                // 응답 메세지 출력
+                System.out.println(chatbotMessage);
+//                chatbotMessage = jsonToString(chatbotMessage);
+//                서비스에서 JSON 파싱하지 않고 자바스크립트로 전송하여 자바스크립트에서 파싱
+            } else {  // Error occurred
+                chatbotMessage = con.getResponseMessage();
+            }
+        } catch (Exception e) {
+            System.out.println(e);
+        }
+        return chatbotMessage;
+    }
+
+    public String chatbotArtineer(String voiceMessage) {
+        String secretKey = "";
+        String apiURL = "";
+
+        String chatbotMessage = ""; // 응답 메세지
+        try {
+            //String apiURL = "https://ex9av8bv0e.apigw.ntruss.com/custom_chatbot/prod/";
+
+            URL url = new URL(apiURL);
+
+            String message = getReqMessage(voiceMessage);
+            System.out.println("##" + message);
+
+            String encodeBase64String = makeSignature(message, secretKey);
+
+            HttpURLConnection con = (HttpURLConnection)url.openConnection();
+            con.setRequestMethod("POST");
+            con.setRequestProperty("Content-Type", "application/json;UTF-8");
+            con.setRequestProperty("X-NCP-CHATBOT_SIGNATURE", encodeBase64String);
+
+            // post request
+            con.setDoOutput(true);
+            DataOutputStream wr = new DataOutputStream(con.getOutputStream());
+            wr.write(message.getBytes("UTF-8"));
+            wr.flush();
+            wr.close();
+            int responseCode = con.getResponseCode();
+
+            BufferedReader br;
+
+            if(responseCode==200) { // Normal call
+                System.out.println(con.getResponseMessage());
+
+                BufferedReader in = new BufferedReader(
+                        new InputStreamReader(
+                                con.getInputStream()));
+                String decodedString;
+                while ((decodedString = in.readLine()) != null) {
+                    chatbotMessage = decodedString;
+                }
+                //chatbotMessage = decodedString;
+                in.close();
+                // 응답 메세지 출력
+                System.out.println(chatbotMessage);
+//                chatbotMessage = jsonToString(chatbotMessage);
+//                서비스에서 JSON 파싱하지 않고 자바스크립트로 전송하여 자바스크립트에서 파싱
+            } else {  // Error occurred
+                chatbotMessage = con.getResponseMessage();
+            }
+        } catch (Exception e) {
+            System.out.println(e);
+        }
+        return chatbotMessage;
+    }
+
     public static String makeSignature(String message, String secretKey) {
 
         String encodeBase64String = "";
